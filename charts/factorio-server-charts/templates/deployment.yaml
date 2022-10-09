@@ -82,7 +82,7 @@ spec:
 {{ toYaml .Values.resources | indent 10 }}
         volumeMounts:
             {{- with .Values.additionalVolumeMounts }}
-            {{ . | nindent 12 }}
+            {{ toYaml . | nindent 12 }}
             {{ end }}
           - name: datadir
             mountPath: /factorio
@@ -109,7 +109,7 @@ spec:
     {{- end }}
       volumes:
         {{- with .Values.additionalVolumes }}
-        {{ . | nindent 8 }}
+        {{ toYaml . | nindent 8 }}
         {{ end }}
         - name: datadir
         {{- if .Values.persistence.enabled }}
