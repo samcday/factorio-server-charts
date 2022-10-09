@@ -38,6 +38,9 @@ spec:
           securityContext:
             runAsUser: 0
           volumeMounts:
+            {{- with .Values.additionalVolumeMounts }}
+            {{ . | nindent 12 }}
+            {{ end }}
             - name: datadir
               mountPath: /factorio
             - name: {{ template "factorio-server-charts.fullname" . }}-serversettingsconfig
@@ -55,6 +58,9 @@ spec:
           securityContext:
             runAsUser: 0
           volumeMounts:
+            {{- with .Values.additionalVolumeMounts }}
+            {{ . | nindent 12 }}
+            {{ end }}
             - name: datadir
               mountPath: /factorio
             - name: {{ template "factorio-server-charts.fullname" . }}-mod-downloader-configmap
@@ -75,6 +81,9 @@ spec:
         resources:
 {{ toYaml .Values.resources | indent 10 }}
         volumeMounts:
+            {{- with .Values.additionalVolumeMounts }}
+            {{ . | nindent 12 }}
+            {{ end }}
           - name: datadir
             mountPath: /factorio
         env:
@@ -99,6 +108,9 @@ spec:
 {{ toYaml .Values.nodeSelector | indent 8 }}
     {{- end }}
       volumes:
+        {{- with .Values.additionalVolumes }}
+        {{ . | nindent 8 }}
+        {{ end }}
         - name: datadir
         {{- if .Values.persistence.enabled }}
           persistentVolumeClaim:

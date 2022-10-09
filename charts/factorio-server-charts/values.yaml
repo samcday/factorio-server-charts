@@ -71,6 +71,9 @@ strategy:
 # Tolerations for pod assignment
 tolerations: []
 
+additionalVolumes: []
+additionalVolumeMounts: []
+
 # Affinity rules for pod assignment
 affinity: {}
 
