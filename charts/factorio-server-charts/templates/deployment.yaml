@@ -81,9 +81,9 @@ spec:
         resources:
 {{ toYaml .Values.resources | indent 10 }}
         volumeMounts:
-            {{- with .Values.additionalVolumeMounts }}
-            {{ toYaml . | nindent 12 }}
-            {{ end }}
+          {{- with .Values.additionalVolumeMounts }}
+          {{ toYaml . | nindent 10 }}
+          {{ end }}
           - name: datadir
             mountPath: /factorio
         env:
@@ -103,10 +103,10 @@ spec:
           value: {{ .Values.service.port | quote }}
         - name: CONFIG
           value: /factorio/configs
-{{- if .Values.nodeSelector }}
+      {{- if .Values.nodeSelector }}
       nodeSelector:
-{{ toYaml .Values.nodeSelector | indent 8 }}
-    {{- end }}
+      {{- toYaml .Values.nodeSelector | nindent 8 }}
+      {{- end }}
       volumes:
         {{- with .Values.additionalVolumes }}
         {{ toYaml . | nindent 8 }}
