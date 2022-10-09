@@ -4,7 +4,7 @@ metadata:
   name: {{ template "factorio-server-charts.fullname" . }}
   labels:
     app: {{ template "factorio-server-charts.fullname" . }}
-    chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+    chart: "{{ .Chart.Name }}"
     release: "{{ .Release.Name }}"
     heritage: "{{ .Release.Service }}"
   annotations:
