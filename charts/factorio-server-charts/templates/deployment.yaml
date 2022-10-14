@@ -68,7 +68,7 @@ spec:
       {{- end }}
       containers:
       {{- with .Values.additionalContainers }}
-        {{- toYaml . | nindent 8 }}
+      {{- toYaml . | nindent 6 }}
       {{ end }}
       - name: {{ template "factorio-server-charts.fullname" . }}
         image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
