@@ -71,6 +71,7 @@ strategy:
 # Tolerations for pod assignment
 tolerations: []
 
+additionalContainers: []
 additionalVolumes: []
 additionalVolumeMounts: []
 

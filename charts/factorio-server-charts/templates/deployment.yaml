@@ -67,6 +67,9 @@ spec:
               mountPath: /scripts
       {{- end }}
       containers:
+      {{- with .Values.additionalContainers }}
+        {{- toYaml . | nindent 8 }}
+      {{ end }}
       - name: {{ template "factorio-server-charts.fullname" . }}
         image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
         imagePullPolicy: {{ .Values.image.pullPolicy }}
