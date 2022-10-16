@@ -82,10 +82,10 @@ spec:
         - containerPort: {{ .Values.rcon.port }}
           protocol: TCP
         resources:
-{{ toYaml .Values.resources | indent 10 }}
+          {{- toYaml .Values.resources | nindent 10 }}
         volumeMounts:
           {{- with .Values.additionalVolumeMounts }}
-          {{ toYaml . | nindent 10 }}
+          {{- toYaml . | nindent 10 }}
           {{ end }}
           - name: datadir
             mountPath: /factorio
@@ -106,9 +106,13 @@ spec:
           value: {{ .Values.service.port | quote }}
         - name: CONFIG
           value: /factorio/configs
-      {{- if .Values.nodeSelector }}
+      {{- with .Values.nodeSelector }}
       nodeSelector:
-      {{- toYaml .Values.nodeSelector | nindent 8 }}
+      {{- toYaml .| nindent 8 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
+      tolerations:
+      {{- toYaml .| nindent 8 }}
       {{- end }}
       volumes:
         {{- with .Values.additionalVolumes }}
