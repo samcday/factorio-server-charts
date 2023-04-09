@@ -203,8 +203,13 @@ spec:
         {{- end }}
         - name: datadir
         {{- if .Values.persistence.enabled }}
+          {{- if .Values.persistence.hostPath }}
+          hostPath:
+            {{- toYaml .Values.persistence.hostPath | nindent 12 }}
+          {{- else }}
           persistentVolumeClaim:
             claimName: {{ if .Values.persistence.dataDir.existingClaim }} {{.Values.persistence.dataDir.existingClaim}} {{ else }}{{ template "factorio-server-charts.fullname" . }}-datadir {{ end }}
+          {{- end }}
         {{- else }}
           emptyDir: {}
         {{- end }}

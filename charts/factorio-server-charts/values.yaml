@@ -121,8 +121,10 @@ persistence:
   storageClassName: ""
   ## If you have annotations to spin up a PV i.e. the location. Remove the curly braces
   annotations: {}
-
-
+  hostPath:
+    # if set, hostpath will be used instead of a PVC.
+    # path: /srv/factorio
+    # type: DirectoryOrCreate
 #### Factorio application configuration ####
 ## @section Factorio Parameters
 ## @param mods.enabled Enable mods
