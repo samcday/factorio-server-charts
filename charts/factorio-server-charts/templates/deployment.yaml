@@ -27,11 +27,6 @@ spec:
         options:
           - name: ndots
             value: '1'
-      {{- if eq .Values.service.type "NodePort" }}
-      hostNetwork: true
-      {{- else }}
-      hostNetwork: false
-      {{- end }}
       initContainers:
         - name: volume-permissions-serversettingsconfig
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
