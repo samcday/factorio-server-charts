@@ -68,7 +68,6 @@ service:
   # externalTrafficPolicy: Cluster
   annotations: {}
   labels: {}
-  externalTrafficPolicy: ~
 
 
 ## Compute Resources required by the operator container

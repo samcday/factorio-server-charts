@@ -38,6 +38,3 @@ spec:
   externalIPs:
 {{ toYaml .Values.service.externalIPs | indent 4 }}
 {{- end }}
-{{- with .Values.service.externalTrafficPolicy }}
-  externalTrafficPolicy: {{ . }}
-{{- end }}
