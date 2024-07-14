@@ -7,6 +7,9 @@ metadata:
     chart: "{{ .Chart.Name }}"
     release: "{{ .Release.Name }}"
     heritage: "{{ .Release.Service }}"
+    {{- with .Values.service.labels }}
+    {{- toYaml . | nindent 4 }}
+    {{- end }}
   {{- if .Values.service.annotations }}
   annotations:
   {{- range $key, $value := .Values.service.annotations }}
@@ -34,4 +37,7 @@ spec:
 {{- if .Values.service.externalIPs }}
   externalIPs:
 {{ toYaml .Values.service.externalIPs | indent 4 }}
+{{- end }}
+{{- with .Values.service.externalTrafficPolicy }}
+  externalTrafficPolicy: {{ . }}
 {{- end }}
